@@ -20,6 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public int IdNoteEdit = -1;
     public List<Notes> AllNotes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +30,40 @@ public class MainActivity extends AppCompatActivity {
     }
     public void OnAddNote(View view)
     {
+        if(view.getTag().toString().isEmpty())
+            IdNoteEdit = (int)view.getTag();
+        else
+            IdNoteEdit = -1;
+
         setContentView(R.layout.activity_note);
+
+       if(IdNoteEdit != -1)
+       {
+           EditText etName = findViewById(R.id.etName);
+           MultiAutoCompleteTextView etText = findViewById(R.id.etText);
+
+           etName.setText(AllNotes.get(IdNoteEdit).Name);
+           etText.setText(AllNotes.get(IdNoteEdit).Text);
+       }
     }
     public void AddNote(View view)
     {
         EditText etName = findViewById(R.id.etName);
         MultiAutoCompleteTextView etText = findViewById(R.id.etText);
-        Notes newNote = new Notes();
-        newNote.Name = etName.getText().toString();
-        newNote.Text = etText.getText().toString();
-        newNote.Date = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
-        AllNotes.add(newNote);
+        if(IdNoteEdit == -1)
+        {
+            Notes newNote = new Notes();
+            newNote.Name = etName.getText().toString();
+            newNote.Text = etText.getText().toString();
+            newNote.Date = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+            AllNotes.add(newNote);
+        }
+        else
+        {
+            AllNotes.get(IdNoteEdit).Name = etName.getText().toString();
+            AllNotes.get(IdNoteEdit).Text = etName.getText().toString();
+            AllNotes.get(IdNoteEdit).Date = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+        }
         setContentView(R.layout.activity_main);
          OnLoad();
     }
@@ -59,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
                     ViewGroup.LayoutParams.MATCH_PARENT
             );
             LL.setLayoutParams(Params);
+            LL.setTag(iNote);
+            LL.setOnClickListener(this::OnAddNote);
             ImageView Logo = new ImageView(this);
             RelativeLayout.LayoutParams LogoPramas = new RelativeLayout.LayoutParams(150,150);
             Logo.setLayoutParams(LogoPramas);
