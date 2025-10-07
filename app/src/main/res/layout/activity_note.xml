@@ -30,6 +30,8 @@
         android:layout_marginRight="10dp"
         android:background="@color/white"
         android:textAllCaps="false"
+        android:padding="10dp"
+        android:gravity="top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

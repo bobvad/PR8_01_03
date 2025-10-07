@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void OnAddNote(View view)
     {
-        if(view.getTag().toString().isEmpty())
+        if(view.getTag() != null)
             IdNoteEdit = (int)view.getTag();
         else
             IdNoteEdit = -1;
