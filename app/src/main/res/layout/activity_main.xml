@@ -38,15 +38,17 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Создать"
-        android:textAllCaps="true"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginBottom="10dp"
+        android:backgroundTint="#F1B130"
+        android:text="Создать"
+        android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
